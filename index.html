@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Haven</title>
+<link rel="stylesheet"
+href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#0f0f0f;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* Navbar */
+
+header{
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    z-index:1000;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:.4s;
+}
+
+header.sticky{
+    background:#111;
+    box-shadow:0 5px 20px rgba(0,0,0,.5);
+}
+
+.logo{
+    font-size:2rem;
+    font-weight:700;
+    color:#d4a574;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#d4a574;
+}
+
+.btn{
+    padding:12px 28px;
+    border:none;
+    border-radius:40px;
+    background:#d4a574;
+    cursor:pointer;
+    font-weight:600;
+    transition:.4s;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+}
+
+/* Hero */
+
+.hero{
+    min-height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65)),
+    url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.hero-content{
+    max-width:800px;
+}
+
+.hero h1{
+    font-size:4rem;
+    margin-bottom:20px;
+    animation:fadeUp 1s ease;
+}
+
+.hero p{
+    font-size:1.1rem;
+    color:#ddd;
+    margin-bottom:30px;
+    animation:fadeUp 1.3s ease;
+}
+
+.hero-btn{
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
+    background:#d4a574;
+    cursor:pointer;
+    font-weight:600;
+    transition:.4s;
+}
+
+.hero-btn:hover{
+    transform:scale(1.08);
+}
+
+/* Section */
+
+section{
+    padding:100px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:2.8rem;
+    color:#d4a574;
+}
+
+/* About */
+
+.about{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:50px;
+    align-items:center;
+}
+
+.about img{
+    width:100%;
+    border-radius:20px;
+}
+
+.about-text p{
+    line-height:1.8;
+    color:#ccc;
+}
+
+/* Menu */
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#1a1a1a;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.5s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.card:hover img{
+    transform:scale(1.1);
+}
+
+.card-content{
+    padding:20px;
+}
+
+.price{
+    color:#d4a574;
+    font-weight:bold;
+}
+
+/* Gallery */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.gallery img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:15px;
+    transition:.4s;
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+}
+
+/* Reviews */
+
+.review-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.review{
+    background:#1a1a1a;
+    padding:25px;
+    border-radius:20px;
+}
+
+.review h4{
+    color:#d4a574;
+    margin-top:15px;
+}
+
+/* Contact */
+
+.contact-form{
+    max-width:700px;
+    margin:auto;
+}
+
+.contact-form input,
+.contact-form textarea{
+    width:100%;
+    padding:15px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:10px;
+}
+
+.contact-form button{
+    width:100%;
+    padding:15px;
+    background:#d4a574;
+    border:none;
+    border-radius:10px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* Footer */
+
+footer{
+    background:#111;
+    padding:30px;
+    text-align:center;
+}
+
+/* Scroll Animation */
+
+.reveal{
+    opacity:0;
+    transform:translateY(60px);
+    transition:1s;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(60px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:2.5rem;
+}
+
+.nav-links{
+    display:none;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header id="header">
+    <div class="logo">☕ Coffee Haven</div>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button class="btn">Order Now</button>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Fresh Coffee & Delicious Moments</h1>
+        <p>
+            Premium coffee crafted with passion.
+            Enjoy every sip in our modern and cozy café.
+        </p>
+        <button class="hero-btn">Explore Menu</button>
+    </div>
+</section>
+
+<section id="about" class="reveal">
+    <div class="section-title">
+        <h2>About Us</h2>
+    </div>
+
+    <div class="about" data-aos="fade-up">
+        <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1000">
+
+        <div class="about-text">
+            <p>
+                We serve freshly roasted coffee made from carefully selected beans.
+                Our café combines exceptional taste, relaxing ambience,
+                and world-class service.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="menu" class="reveal">
+
+    <div class="section-title">
+        <h2>Popular Menu</h2>
+    </div>
+
+    <div class="menu-grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600">
+            <div class="card-content">
+                <h3>Cappuccino</h3>
+                <p>Rich espresso and milk foam.</p>
+                <span class="price">₹199</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600">
+            <div class="card-content">
+                <h3>Latte</h3>
+                <p>Smooth creamy coffee.</p>
+                <span class="price">₹249</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600">
+            <div class="card-content">
+                <h3>Mocha</h3>
+                <p>Chocolate coffee blend.</p>
+                <span class="price">₹299</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="gallery" class="reveal">
+
+    <div class="section-title">
+        <h2>Gallery</h2>
+    </div>
+
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800">
+        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=800">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800">
+    </div>
+
+</section>
+
+<section class="reveal">
+
+    <div class="section-title">
+        <h2>Customer Reviews</h2>
+    </div>
+
+    <div class="review-container">
+
+        <div class="review">
+            <p>Best coffee shop experience ever.</p>
+            <h4>Priya</h4>
+        </div>
+
+        <div class="review">
+            <p>Amazing ambience and coffee.</p>
+            <h4>Rahul</h4>
+        </div>
+
+        <div class="review">
+            <p>Perfect place to work and relax.</p>
+            <h4>Aman</h4>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="contact" class="reveal">
+
+    <div class="section-title">
+        <h2>Contact Us</h2>
+    </div>
+
+    <form class="contact-form">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Email">
+        <textarea rows="5" placeholder="Message"></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+
+</section>
+
+<footer>
+    <p>© 2026 Coffee Haven | All Rights Reserved</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({
+    duration: 1000,
+    offset: 100,
+    once: true
+});
+</script>
+
+<script>
+
+window.addEventListener("scroll",()=>{
+
+    const header=document.getElementById("header");
+
+    if(window.scrollY>50){
+        header.classList.add("sticky");
+    }else{
+        header.classList.remove("sticky");
+    }
+
+});
+
+function reveal(){
+
+    let reveals=document.querySelectorAll(".reveal");
+
+    reveals.forEach((item)=>{
+
+        let windowHeight=window.innerHeight;
+        let top=item.getBoundingClientRect().top;
+
+        if(top<windowHeight-100){
+            item.classList.add("active");
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll",reveal);
+reveal();
+
+</script>
+
+</body>
+</html>
